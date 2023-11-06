@@ -1,15 +1,16 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
 // Function prototypes
-void bubbleSort(int arr[], int n);
-void insertionSort(int arr[], int n);
-void selectionSort(int arr[], int n);
-void mergeSort(int arr[], int l, int r);
+void bubble(int arr[], int n);
+void insertion(int arr[], int n);
+void selection(int arr[], int n);
+void mergeS(int arr[], int l, int r);
 void merge(int arr[], int l, int m, int r);
-void printArray(int arr[], int n);
+void printArr(int arr[], int n);
 
 int main()
 {
@@ -24,29 +25,26 @@ int main()
   while (1)
   {
     cout << endl;
-    cout << "How many numbers do you want to generate?:";
+    cout << "How many numbers do you want to generate? :";
     int n;
     cin >> n;
-
+    cout << endl;
     // Check if the input is valid
     if (n <= 0)
     {
       cout << "Invalid input. Please enter a positive number." << endl;
       return 0;
     }
-
     // Create an array of random numbers
     int arr[n];
     for (int i = 0; i < n; i++)
     {
       arr[i] = rand() % 100; // Generate a number between 0 and 99
     }
-
     // Print the original array
-    cout << "The original array is:";
-    printArray(arr, n);
+    cout << "Ramdon Number Generation is: ";
+    printArr(arr, n);
     cout << endl;
-
     // Develop a menu for the user to select which sorting algorithm to perform
     cout << "Which sorting algorithm do you want to perform?" << endl;
     cout << "1. Bubble Sort" << endl;
@@ -54,36 +52,35 @@ int main()
     cout << "3. Selection Sort" << endl;
     cout << "4. Merge Sort" << endl;
     cout << "5. Exit " << endl;
-    cout << "Enter your choice (1-5):";
+    cout << "Enter your choice (1-5): ";
     int choice;
     cin >> choice;
     cout << endl;
-
     // Perform the desired algorithm and print the sorted array
     switch (choice)
     {
     case 1:
-      bubbleSort(arr, n);
-      cout << "Bubble sort is:";
-      printArray(arr, n);
+      bubble(arr, n);
+      cout << "Bubble Sort is:";
+      printArr(arr, n);
       cout << endl;
       break;
     case 2:
-      insertionSort(arr, n);
-      cout << "Insertion sort is:";
-      printArray(arr, n);
+      insertion(arr, n);
+      cout << "Insertion Sort is:";
+      printArr(arr, n);
       cout << endl;
       break;
     case 3:
-      selectionSort(arr, n);
-      cout << "Selection sort is:";
-      printArray(arr, n);
+      selection(arr, n);
+      cout << "Selection Sort is:";
+      printArr(arr, n);
       cout << endl;
       break;
     case 4:
-      mergeSort(arr, 0, n - 1);
-      cout << "Merge sort is:";
-      printArray(arr, n);
+      mergeS(arr, 0, n - 1);
+      cout << "Merge Sort is:";
+      printArr(arr, n);
       cout << endl;
       break;
     case 5:
@@ -92,14 +89,13 @@ int main()
       cout << endl;
       break;
     default:
-      cout << "Invalid choice. Please enter a number between 1 and 4." << endl;
+      cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
       break;
     }
   }
 }
-
 // Bubble sort algorithm
-void bubbleSort(int arr[], int n)
+void bubble(int arr[], int n)
 {
   for (int i = 0; i < n - 1; i++)
   {
@@ -115,9 +111,8 @@ void bubbleSort(int arr[], int n)
     }
   }
 }
-
 // Insertion sort algorithm
-void insertionSort(int arr[], int n)
+void insertion(int arr[], int n)
 {
   for (int i = 1; i < n; i++)
   {
@@ -133,9 +128,8 @@ void insertionSort(int arr[], int n)
     arr[j + 1] = key;
   }
 }
-
 // Selection sort algorithm
-void selectionSort(int arr[], int n)
+void selection(int arr[], int n)
 {
   for (int i = 0; i < n - 1; i++)
   {
@@ -158,15 +152,15 @@ void selectionSort(int arr[], int n)
   }
 }
 // Merge sort algorithm
-void mergeSort(int arr[], int l, int r)
+void mergeS(int arr[], int l, int r)
 {
   if (l < r)
   {
     // Find the middle point
     int m = (l + r) / 2;
     // Sort the left and right halves
-    mergeSort(arr, l, m);
-    mergeSort(arr, m + 1, r);
+    mergeS(arr, l, m);
+    mergeS(arr, m + 1, r);
     // Merge the sorted halves
     merge(arr, l, m, r);
   }
@@ -222,7 +216,7 @@ void merge(int arr[], int l, int m, int r)
   }
 }
 // Print array function
-void printArray(int arr[], int n)
+void printArr(int arr[], int n)
 {
   for (int i = 0; i < n; i++)
   {
