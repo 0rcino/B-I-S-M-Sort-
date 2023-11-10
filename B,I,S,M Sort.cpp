@@ -10,7 +10,7 @@ void insertion(int arr[], int n);
 void selection(int arr[], int n);
 void mergeS(int arr[], int l, int r);
 void merge(int arr[], int l, int m, int r);
-void printArr(int arr[], int n);
+void array(int arr[], int n);
 
 int main()
 {
@@ -22,76 +22,68 @@ int main()
   cout << endl;
   // Ask the user how many numbers to generate
   // Random Number Generator
-  while (1)
+  cout << endl;
+  cout << "What is the desired number generation number? :";
+  int n;
+  cin >> n;
+  cout << endl;
+  // Check if the input is valid
+  if (n <= 0)
   {
+    cout << "Unvalidated data entered. Kindly input a positive number." << endl;
+    return 0;
+  }
+  // Create an array of random numbers
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    arr[i] = rand() % 100; // Generate a number between 0 and 99
+  }
+  // Print the original array
+  cout << "Generation of Ramdon Numbers is: ";
+  array(arr, n);
+  cout << endl;
+  // Develop a menu for the user to select which sorting algorithm to perform
+  cout << "Which sorting algorithm would you want to use?" << endl;
+  cout << "1. Bubble Sort" << endl;
+  cout << "2. Insertion Sort" << endl;
+  cout << "3. Selection Sort" << endl;
+  cout << "4. Merge Sort" << endl;
+  cout << "5. Exit " << endl;
+  cout << "Choose an option (1-4): ";
+  int choice;
+  cin >> choice;
+  cout << endl;
+  // Perform the desired algorithm and print the sorted array
+  switch (choice)
+  {
+  case 1:
+    bubble(arr, n);
+    cout << "Bubble Sort is: ";
+    array(arr, n);
     cout << endl;
-    cout << "How many numbers do you want to generate? :";
-    int n;
-    cin >> n;
+    break;
+  case 2:
+    insertion(arr, n);
+    cout << "Insertion Sort is: ";
+    array(arr, n);
     cout << endl;
-    // Check if the input is valid
-    if (n <= 0)
-    {
-      cout << "Invalid input. Please enter a positive number." << endl;
-      return 0;
-    }
-    // Create an array of random numbers
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-      arr[i] = rand() % 100; // Generate a number between 0 and 99
-    }
-    // Print the original array
-    cout << "Ramdon Number Generation is: ";
-    printArr(arr, n);
+    break;
+  case 3:
+    selection(arr, n);
+    cout << "Selection Sort is: ";
+    array(arr, n);
     cout << endl;
-    // Develop a menu for the user to select which sorting algorithm to perform
-    cout << "Which sorting algorithm do you want to perform?" << endl;
-    cout << "1. Bubble Sort" << endl;
-    cout << "2. Insertion Sort" << endl;
-    cout << "3. Selection Sort" << endl;
-    cout << "4. Merge Sort" << endl;
-    cout << "5. Exit " << endl;
-    cout << "Enter your choice (1-5): ";
-    int choice;
-    cin >> choice;
+    break;
+  case 4:
+    mergeS(arr, 0, n - 1);
+    cout << "Merge Sort is: ";
+    array(arr, n);
     cout << endl;
-    // Perform the desired algorithm and print the sorted array
-    switch (choice)
-    {
-    case 1:
-      bubble(arr, n);
-      cout << "Bubble Sort is:";
-      printArr(arr, n);
-      cout << endl;
-      break;
-    case 2:
-      insertion(arr, n);
-      cout << "Insertion Sort is:";
-      printArr(arr, n);
-      cout << endl;
-      break;
-    case 3:
-      selection(arr, n);
-      cout << "Selection Sort is:";
-      printArr(arr, n);
-      cout << endl;
-      break;
-    case 4:
-      mergeS(arr, 0, n - 1);
-      cout << "Merge Sort is:";
-      printArr(arr, n);
-      cout << endl;
-      break;
-    case 5:
-      exit(1);
-      cout << "Press Enter to Exit . . .";
-      cout << endl;
-      break;
-    default:
-      cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-      break;
-    }
+    break;
+  default:
+    cout << "Unvalid selection. Enter a number between 1 and 4." << endl;
+        break;
   }
 }
 // Bubble sort algorithm
@@ -104,9 +96,9 @@ void bubble(int arr[], int n)
       if (arr[j] > arr[j + 1])
       {
         // Swap the elements
-        int temp = arr[j];
+        int temps = arr[j];
         arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
+        arr[j + 1] = temps;
       }
     }
   }
@@ -116,16 +108,16 @@ void insertion(int arr[], int n)
 {
   for (int i = 1; i < n; i++)
   {
-    int key = arr[i]; // The element to be inserted
-    int j = i - 1;    // The index of the previous element
+    int keys = arr[i]; // The element to be inserted
+    int j = i - 1;     // The index of the previous element
     // Shift the elements that are greater than the key to the right
-    while (j >= 0 && arr[j] > key)
+    while (j >= 0 && arr[j] > keys)
     {
       arr[j + 1] = arr[j];
       j--;
     }
     // Insert the key at the correct position
-    arr[j + 1] = key;
+    arr[j + 1] = keys;
   }
 }
 // Selection sort algorithm
@@ -133,21 +125,21 @@ void selection(int arr[], int n)
 {
   for (int i = 0; i < n - 1; i++)
   {
-    int minIndex = i; // The index of the minimum element
+    int index = i; // The index of the minimum element
     // Find the minimum element in the unsorted part of the array
     for (int j = i + 1; j < n; j++)
     {
-      if (arr[j] < arr[minIndex])
+      if (arr[j] < arr[index])
       {
-        minIndex = j;
+        index = j;
       }
     }
     // Swap the minimum element with the first element of the unsorted part
-    if (minIndex != i)
+    if (index != i)
     {
-      int temp = arr[i];
-      arr[i] = arr[minIndex];
-      arr[minIndex] = temp;
+      int temps = arr[i];
+      arr[i] = arr[index];
+      arr[index] = temps;
     }
   }
 }
@@ -216,7 +208,7 @@ void merge(int arr[], int l, int m, int r)
   }
 }
 // Print array function
-void printArr(int arr[], int n)
+void array(int arr[], int n)
 {
   for (int i = 0; i < n; i++)
   {
