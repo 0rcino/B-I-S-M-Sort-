@@ -1,14 +1,3 @@
-/*Based on the provided Sorting Algorithms, develop a C++ Program that can perform each.
-1. Develop a Menu (Bubble, Insertion, Selection or Merge) for the user to select which sorting algorithm to perform.
-2. Random Number Generator (Ask how many numbers, does he or she want)
-3. Then, Perform the Desired Algorithm.
-*/
-
-/*Group 2*/
-
-/*Leader: Allen Jefferson C. Orcino
-  Member: Carl Angelo Recodig
-*/
 
 #include <iostream>
 #include <vector>
