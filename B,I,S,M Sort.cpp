@@ -151,68 +151,77 @@ vector<int> random(int size)
 
 int main()
 {
-  int choice;
-  int size;
-  vector<int> arr;
   cout << "+------------------------------------------+\n";
   cout << "| Bubble, Insertion, Selection, Merge Sort |\n";
   cout << "+------------------------------------------+\n";
   cout << endl;
-  cout << "What is the desired number generation number? : ";
-  cin >> size;
-  cout << endl;
-  while (size < 1)
+
+  char continueSort;
+  do
   {
-    cout << "Unvalidated data entered. Kindly input a positive number." << endl;
+    int choice;
+    int size;
+    vector<int> arr;
+    cout << endl;
+    cout << "What is the desired number generation number? : ";
     cin >> size;
-  }
-  arr = random(size);
-  cout << "Generation of Ramdon Numbers is: ";
-  print(arr);
-  cout << endl;
-  cout << "Which sorting algorithm would you want to use ? " << endl;
-  cout << "1. Bubble sort" << endl;
-  cout << "2. Insertion sort" << endl;
-  cout << "3. Selection sort" << endl;
-  cout << "4. Merge sort" << endl;
-  cout << "Choose an option (1-4): ";
-  cin >> choice;
-  cout << endl;
-  while (choice < 1 || choice > 4)
-  {
-    cout << "Unvalid selection. Enter a number between 1 and 4." << endl;
+    cout << endl;
+    while (size < 1)
+    {
+      cout << "Unvalidated data entered. Kindly input a positive number." << endl;
+      cin >> size;
+    }
+    arr = random(size);
+    cout << "Generation of Ramdon Numbers is: ";
+    print(arr);
+    cout << endl;
+    cout << "Which sorting algorithm would you want to use ? " << endl;
+    cout << "1. Bubble sort" << endl;
+    cout << "2. Insertion sort" << endl;
+    cout << "3. Selection sort" << endl;
+    cout << "4. Merge sort" << endl;
+    cout << "Choose an option (1-4): ";
     cin >> choice;
-  }
-  int arrs = 0;
-  switch (choice)
-  {
-  case 1:
-    cout << "Performing bubble sort..." << endl;
-    bubbleSort(arr);
     cout << endl;
-    cout << "Bubble Sort is: ";
-    print(arr);
-    break;
-  case 2:
-    cout << "Performing insertion sort..." << endl;
-    insertionSort(arr);
+    while (choice < 1 || choice > 4)
+    {
+      cout << "Unvalid selection. Enter a number between 1 and 4." << endl;
+      cin >> choice;
+    }
+    int arrs = 0;
+    switch (choice)
+    {
+    case 1:
+      cout << "Performing bubble sort..." << endl;
+      bubbleSort(arr);
+      cout << endl;
+      cout << "Bubble Sort is: ";
+      print(arr);
+      break;
+    case 2:
+      cout << "Performing insertion sort..." << endl;
+      insertionSort(arr);
+      cout << endl;
+      cout << "Insertion Sort is: ";
+      print(arr);
+      break;
+    case 3:
+      cout << "Performing selection sort..." << endl;
+      selectionSort(arr);
+      cout << endl;
+      cout << "Selection Sort is: ";
+      print(arr);
+      break;
+    case 4:
+      cout << "Performing merge sort..." << endl;
+      arr = mergeSort(arr, arrs);
+      cout << endl;
+      cout << "Merge Sort is: ";
+      print(arr);
+      break;
+    }
     cout << endl;
-    cout << "Insertion Sort is: ";
-    print(arr);
-    break;
-  case 3:
-    cout << "Performing selection sort..." << endl;
-    selectionSort(arr);
-    cout << endl;
-    cout << "Selection Sort is: ";
-    print(arr);
-    break;
-  case 4:
-    cout << "Performing merge sort..." << endl;
-    arr = mergeSort(arr, arrs);
-    cout << endl;
-    cout << "Merge Sort is: ";
-    print(arr);
-    break;
-  }
+    cout << "Do you want to continue? (y/n): ";
+    cin >> continueSort;
+  } while (continueSort == 'y' || continueSort == 'Y');
 }
